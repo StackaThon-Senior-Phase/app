@@ -5,13 +5,18 @@ import Cookies from "universal-cookie";
 
 
 
-import { ChannelListContainer, ChannelContainer } from "./components";
+import { ChannelListContainer, ChannelContainer, Auth } from "./components";
 
 const apiKey = "ybaqex9wsn9y";
 
 const client = StreamChat.getInstance(apiKey);
 
+const authToken = false;
+
+
 const App = () => {
+
+  if (!authToken) return <Auth/>
   return (
     <div className="app__wrapper">
       <Chat client={client} theme="team light">
