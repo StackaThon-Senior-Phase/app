@@ -34,10 +34,10 @@ const App = () => {
   const [isCreating, setIsCreating] = useState(false);
   const [isEditing, setIsEditing] = useState(false);
 
-  if (authToken) return <Auth />;
+  // if (authToken) return <Auth />;
   // use the line above to test frontend without having to log in
 
-  // if (!authToken) return <Auth/>
+  if (!authToken) return <Auth/>
   return (
     <div className="app__wrapper">
       <Chat client={client} theme="team light">
