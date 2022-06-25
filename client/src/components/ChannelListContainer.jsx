@@ -6,7 +6,9 @@ import { ChannelSearch, TeamChannelList, TeamChannelPreview } from "./";
 import HospitalIcon from "../assets/hospital.png";
 import LogoutIcon from "../assets/logout.png";
 
-const SideBar = () => (
+const cookies = new Cookies();
+
+const SideBar = ({ logout }) => (
   <div className="channel-list__sidebar">
     <div className="channel-list__sidebar__icon1">
       <div className="icon1__inner">
@@ -15,7 +17,7 @@ const SideBar = () => (
     </div>
 
     <div className="channel-list__sidebar__icon1">
-      <div className="icon2__inner">
+      <div className="icon2__inner" onClick={logout}>
         <img src={LogoutIcon} alt="Logout" width="30" />
       </div>
     </div>
@@ -26,26 +28,44 @@ const CompanyHeader = () => (
   <div className="channel-list__header">
     <p className="channel-list__header__text">Messenging App</p>
   </div>
-)
+);
 
 const ChannelListContainer = () => {
+  const logout = () => {
+    // clear cookies and reload window
+    cookies.remove("token");
+    cookies.remove("userId");
+    cookies.remove("username");
+    cookies.remove("fullName");
+    cookies.remove("avatarUrl");
+    cookies.remove("hashedPassword");
+    cookies.remove("phoneNumber");
+
+    window.location.reload();
+  };
   return (
     <>
-      <SideBar />
+      <SideBar logout={logout} />
       <div className="channel-list__list__wrapper">
         <CompanyHeader />
         <ChannelSearch />
         <ChannelList
           filters={{}}
           channelRenderFilterFn={() => {}}
-          List={(listProps) => (<TeamChannelList {...listProps} type='team' /> )}
-          Preview ={(previewProps) => (<TeamChannelPreview {...previewProps} type='team' /> )}
+          List={(listProps) => <TeamChannelList {...listProps} type="team" />}
+          Preview={(previewProps) => (
+            <TeamChannelPreview {...previewProps} type="team" />
+          )}
         />
-           <ChannelList
+        <ChannelList
           filters={{}}
           channelRenderFilterFn={() => {}}
-          List={(listProps) => (<TeamChannelList {...listProps} type='messaging' /> )}
-          Preview ={(previewProps) => (<TeamChannelPreview {...previewProps} type='messaging' /> )}
+          List={(listProps) => (
+            <TeamChannelList {...listProps} type="messaging" />
+          )}
+          Preview={(previewProps) => (
+            <TeamChannelPreview {...previewProps} type="messaging" />
+          )}
         />
       </div>
     </>
