@@ -19,12 +19,14 @@ const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
+    // console.log(form)
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+      // console.log(form)
     const { username, password, phoneNumber, avatarUrl } = form;
 
-    const URL = "http://localhost:5000/auth";
+    const URL = "http://localhost:6969/auth";
        // const URL = 'heroku link'
 
 
@@ -53,7 +55,7 @@ const Auth = () => {
     <div className="auth__form-container">
       <div className="auth__form-container_fields">
         <div className="auth__form-container_fields-content">
-          <p>{isSignup ? "Sign up" : "Sign In"}</p>
+          <p>{isSignup ? "Sign Up" : "Sign In"}</p>
           <form onSubmit={handleSubmit}>
             {isSignup && (
               <div className="auth__form-container_fields-content_input">
@@ -72,7 +74,7 @@ const Auth = () => {
               <input
                 name="username"
                 type="text"
-                placeholder="User Name"
+                placeholder="Username"
                 onChange={handleChange}
                 required
               />
@@ -91,7 +93,7 @@ const Auth = () => {
             )}
             {isSignup && (
               <div className="auth__form-container_fields-content_input">
-                <label htmlFor="avatarUrl">Avatar Url:</label>
+                <label htmlFor="avatarUrl">Avatar URL:</label>
                 <input
                   name="avatarUrl"
                   type="text"
@@ -129,9 +131,9 @@ const Auth = () => {
           </form>
           <div className="auth__form-container_fields-account">
             <p>
-              {isSignup ? "Already have an account? " : "Dont have an account? "}
+              {isSignup ? "Already have an account? " : "Don't have an account? "}
               <span onClick={switchMode}>
-                {isSignup ? "Sign in" : "Sign Up"}
+                {isSignup ? "Sign In" : "Sign Up"}
               </span>
             </p>
           </div>
