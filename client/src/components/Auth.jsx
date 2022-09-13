@@ -27,7 +27,7 @@ const Auth = () => {
     const { username, password, phoneNumber, avatarUrl } = form;
 
     // const URL = "http://localhost:6969/auth";
-    // const URL = 'https://stackathon-chat-app.herokuapp.com/auth';
+    // const URL = 'https://stackathon-chat-app.herokuapp.com/auth'
     const URL = "https://techtalk-stackathon.herokuapp.com/auth";
 
     const {

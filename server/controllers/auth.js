@@ -28,7 +28,7 @@ const signup = async (req, res) => {
       phoneNumber
     });
   } catch (error) {
-    console.log("Error is", error);
+    console.log("Error is ", error);
     res.status(500).json({ message: error });
   }
 };
